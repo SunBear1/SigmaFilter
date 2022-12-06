@@ -7,21 +7,27 @@ CHAR_SWAPS_FILEPATH = "../data/char_swaps.yaml"
 
 
 def charswap_filter(word: str):
-    def swap_words(s, x, y):
-        return y.join(part.replace(y, x) for part in s.split(x))
             
     with open(CHAR_SWAPS_FILEPATH, "r", encoding="utf8") as stream:
-        possible_swaps = yaml.safe_load(stream)["swaps_v2"]
+        yml_data = yaml.safe_load(stream)
+    possible_swaps = yml_data["swaps"]
+    ambiguities = yml_data["ambiguities"]
     
-    # filtering out capitalized letters     
     lowercase = word.lower()
-    
     for letter, combinations in possible_swaps.items():
         for combination in combinations:
             if combination in lowercase:
-                lowercase = swap_words(lowercase, combination, letter)
+                lowercase = lowercase.replace(combination, letter)
+    
+    possible_profanities = []
+    #ambiguity check. f.e '4' can mean both 'a' or 'h' according to Leet so 2 variations are created instead of 1.
+    for combination, letters in ambiguities.items():
+        for letter in letters:
+            if combination in lowercase:
+                possible_profanities.append(lowercase.replace(combination, letter))
+    
+    print(possible_profanities)
 
-    print(lowercase)
                 
 def example_filer(word: str):
     if word == "kurva":
@@ -29,4 +35,4 @@ def example_filer(word: str):
     return True
 
 if __name__ == "__main__":
-    charswap_filter("Koorwa")
+    charswap_filter("Koorw4")
