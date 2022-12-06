@@ -28,5 +28,3 @@ permutacje z danego słowa bazowego
 proces sprawdzania słowa mikrofiltrami
 wczytywanie wejścia
 pokazywanie wyjścia
-
-test
