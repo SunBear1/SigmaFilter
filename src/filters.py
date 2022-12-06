@@ -1,5 +1,5 @@
 """
-Module containing all micro filers for word validation
+Module containing all micro filers for _word validation
 """
 
 

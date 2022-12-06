@@ -8,7 +8,7 @@ from src.console_utils import run_filters
 TEST_WORDS_FILEPATH = "../data/test_badwords.yaml"
 
 if __name__ == '__main__':
-    user_input = input("Type word to check(skip if run words from test_badwords.yaml)\n")
+    user_input = input("Type _word to check(skip if run _words from test_badwords.yaml)\n")
     if user_input == "":
         with open(TEST_WORDS_FILEPATH, "r", encoding="utf8") as stream:
             badwords = yaml.safe_load(stream)["badwords"]
