@@ -1,6 +1,7 @@
 """
 Module containing console UI functions
 """
+import types
 
 
 class Colors:
@@ -19,7 +20,7 @@ def run_filters(word: str):
     import filters
     for i in dir(filters):
         filter = getattr(filters, i)
-        if callable(filter):
+        if callable(filter) and isinstance(filter, types.FunctionType):
             if not filter(word):
                 print("-------------------------------")
                 print(
