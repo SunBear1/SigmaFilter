@@ -13,6 +13,7 @@ def charswap_filter(word: str):
     possible_swaps = yml_data["swaps"]
     ambiguities = yml_data["ambiguities"]
     
+    #STEP 1 - initial replacements with reference to Leet system. 
     lowercase = word.lower()
     for letter, combinations in possible_swaps.items():
         for combination in combinations:
@@ -20,13 +21,13 @@ def charswap_filter(word: str):
                 lowercase = lowercase.replace(combination, letter)
     
     possible_profanities = []
-    #ambiguity check. f.e '4' can mean both 'a' or 'h' according to Leet so 2 variations are created instead of 1.
-    for combination, letters in ambiguities.items():
+    #STEP 2 - ambiguity check. f.e '4' can mean both 'a' or 'h' according to Leet so 2 variations are created instead of 1.
+    for ambiguity, letters in ambiguities.items():
         for letter in letters:
-            if combination in lowercase:
+            if ambiguity in lowercase:
                 possible_profanities.append(lowercase.replace(combination, letter))
     
-    print(possible_profanities)
+    
 
                 
 def example_filer(word: str):
