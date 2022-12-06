@@ -1,3 +1,6 @@
+"""
+Module loading all source dictionaries used inside filters.py
+"""
 import yaml
 
 
