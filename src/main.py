@@ -12,10 +12,10 @@ if __name__ == '__main__':
         option = input("1) Wczytaj tekst z pliku\n2) Wczytaj tekst z konsoli\n")
         if option == "1":
             text_to_filter = load_input_from_file(path=INPUT_FILE_PATH)
-            bad_input = True
+            bad_input = False
         elif option == "2":
             text_to_filter = input("Wprowadź tekst:\n").split()
-            bad_input = True
+            bad_input = False
 
     for i in range(len(text_to_filter)):
         text_to_filter[i] = text_to_filter[i].lower()
