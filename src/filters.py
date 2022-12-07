@@ -7,6 +7,7 @@ Module containing all micro filers for word validation
 def charswap_filter(word: str) -> list:
             
     #STEP 1 - initial replacements with reference to Leet system. Capitalized letters do not matter in this filter
+
     for combination, letter in SourceDictionaries.POSSIBLE_SWAPS.items():
         if combination in word:
             word = word.replace(combination, letter)
