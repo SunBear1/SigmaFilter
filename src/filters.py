@@ -42,8 +42,17 @@ def remove_spaces(first_word: str, second_word: str) -> str:
     return first_word + second_word
 
 
-def remove_repeats(word) -> str:
-    return word
+def remove_repeats(word: str) -> str:
+    chars = list(word)
+    i = 0
+    max_index = len(chars) - 2
+    while i <= max_index:
+        if chars[i] == chars[i+1]:
+            chars.pop(i)
+            max_index -= 1
+        else:
+            i += 1
+    return ''.join(chars)
 
 
 def remove_endings(word) -> str:
