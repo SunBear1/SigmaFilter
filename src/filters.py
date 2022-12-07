@@ -1,13 +1,14 @@
-from source_dicts import SourceDictionaries
-from itertools import product
 """
 Module containing all micro filers for word validation
 """
+from itertools import product
+
+from source_dicts import SourceDictionaries
+
 
 def charswap_filter(word: str) -> list:
-            
-    # STEP 1 - initial replacements with reference to Leet system. Capitalized letters do not matter in this filter
 
+    # STEP 1 - initial replacements with reference to Leet system. Capitalized letters do not matter in this filter
     for combination, letter in SourceDictionaries.POSSIBLE_SWAPS.items():
         if combination in word:
             word = word.replace(combination, letter)
@@ -30,7 +31,14 @@ def charswap_filter(word: str) -> list:
                 
     return possible_profanities
 
-def example_filer(word: str):
-    if word == "kurva":
-        return False
-    return True
+
+def remove_spaces(first_word: str, second_word: str) -> str:
+    return first_word + second_word
+
+
+def remove_repeats(word) -> str:
+    return word
+
+
+def remove_endings(word) -> str:
+    return word
