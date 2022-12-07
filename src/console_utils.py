@@ -16,6 +16,12 @@ class Colors:
     UNDERLINE = '\033[4m'
 
 
+def load_input_from_file() -> list:
+    with open('readme.txt') as f:
+        lines = f.readlines()
+    return lines
+
+
 def run_filters(word: str):
     import filters
     for i in dir(filters):
