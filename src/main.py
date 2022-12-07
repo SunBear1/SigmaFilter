@@ -3,7 +3,7 @@ Main project module
 """
 import yaml
 
-from src.console_utils import run_filters
+from console_utils import run_filters
 
 TEST_WORDS_FILEPATH = "../data/test_badwords.yaml"
 
