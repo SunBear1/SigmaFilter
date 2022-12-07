@@ -7,15 +7,15 @@ INPUT_FILE_PATH = "../wejscie.txt"
 
 if __name__ == '__main__':
 
-    good_input = False
-    while not good_input:
+    bad_input = True
+    while bad_input:
         option = input("1) Wczytaj tekst z pliku\n2) Wczytaj tekst z konsoli\n")
         if option == "1":
             text_to_filter = load_input_from_file(path=INPUT_FILE_PATH)
-            good_input = True
+            bad_input = True
         elif option == "2":
             text_to_filter = input("Wprowadź tekst:\n").split()
-            good_input = True
+            bad_input = True
 
     for i in range(len(text_to_filter)):
         text_to_filter[i] = text_to_filter[i].lower()
