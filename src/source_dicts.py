@@ -9,7 +9,7 @@ class SourceDictionaries:
         RAW_BAD_WORDS: list = yaml.safe_load(stream)["badwords"]
     with open("../data/char_swaps.yaml", "r", encoding="utf8") as stream:
         yml_swap_data = yaml.safe_load(stream)
-    
+
     AMBIGUITIES: dict = yml_swap_data["ambiguities"]
     raw_swaps: dict = yml_swap_data["swaps"]
     modified_swaps = {}
