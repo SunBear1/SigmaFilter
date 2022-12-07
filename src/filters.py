@@ -11,7 +11,6 @@ def charswap_filter(word: str) -> list:
         if combination in word:
             word = word.replace(combination, letter)
     
-    # 
     possible_profanities = list()
     possible_profanities.append(word)
     
