@@ -32,11 +32,7 @@ def charswap_filter(word: str) -> list:
     
     return possible_profanities
 
-
 def example_filer(word: str):
     if word == "kurva":
         return False
     return True
-
-if __name__ == "__main__":
-    print(charswap_filter("plndol"))
