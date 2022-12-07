@@ -12,7 +12,7 @@ def charswap_filter(word: str) -> list:
         if combination in word:
             word = word.replace(combination, letter)
     
-    possible_profanities = list()
+    possible_profanities = [word]
     possible_profanities.append(word)
     
     # STEP 2 - ambiguity check. f.e '4' can mean both 'a' or 'h' according to Leet so 2 variations are created instead of 1.
