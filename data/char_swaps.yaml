@@ -33,9 +33,10 @@ ambiguities:
   '6' : [b, g]
   '7' : [f, t]
   '9' : [g, j]
-  'i' : [l] # I = l or I = i 
+  'i' : [l] 
   'v' : [u, w]
   'o' : [ó, u]
-  'l' : [i] # l = I or l = i (i guess)
+  'l' : [i] 
   'ó' : [u]
   'q' : ['k', 'ku']
+  

@@ -4,7 +4,7 @@ from itertools import product
 Module containing all micro filers for word validation
 """
 
-def charswap_filter(word: str):
+def charswap_filter(word: str) -> list:
             
     #STEP 1 - initial replacements with reference to Leet system. Capitalized letters do not matter in this filter
     lowercase = word.lower()
@@ -22,7 +22,12 @@ def charswap_filter(word: str):
                 temp = list()
                 for profanity in possible_profanities:
                     if ambiguity in profanity:
-                        temp.append(profanity.replace(ambiguity, letter))
+                        if profanity.count(ambiguity) > 1:
+                            options = [(c,) if c != ambiguity else (ambiguity, letter) for c in profanity]
+                            temp = [''.join(o) for o in product(*options)]
+                            temp = temp[1:]
+                        else: 
+                            temp.append(profanity.replace(ambiguity, letter))
                 possible_profanities.extend(temp)
     
     #STEP 3 - verifying if there is a profanity in possible_profanities list
@@ -36,7 +41,3 @@ def example_filer(word: str):
     if word == "kurva":
         return False
     return True
-
-if __name__ == "__main__":
-    print(charswap_filter("kuЯvvy"))
-    #print(charswap_filter("|O!/\/ |>0I")

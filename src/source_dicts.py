@@ -18,6 +18,3 @@ class SourceDictionaries:
             modified_swaps[value] = key
     sorted_swaps = dict(sorted(modified_swaps.items(), key=lambda item: len(item[0]), reverse=True))
     POSSIBLE_SWAPS: dict = sorted_swaps
-    
-    
-    
