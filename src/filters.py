@@ -11,8 +11,7 @@ def charswap_filter(word: str) -> list:
         if combination in word:
             word = word.replace(combination, letter)
     
-    possible_profanities = list()
-    possible_profanities.append(word)
+    possible_profanities = [word]
     
     # STEP 2 - ambiguity check. f.e '4' can mean both 'a' or 'h' according to Leet so 2 variations are created instead of 1.
     for ambiguity, letters in SourceDictionaries.AMBIGUITIES.items():
@@ -20,15 +19,14 @@ def charswap_filter(word: str) -> list:
             for letter in letters:
                 temp = list()
                 for profanity in possible_profanities:
-                    if ambiguity in profanity:
                         if profanity.count(ambiguity) > 1:
                             # Combinations of ambiguous letter replacements. F.e "iloi" -> ["lloi","llol","ilol"]
                             options = [(c,) if c != ambiguity else (ambiguity, letter) for c in profanity]
                             temp.extend([''.join(o) for o in product(*options)])
-                        else: 
+                        elif profanity.count(ambiguity) == 1:
                             temp.append(profanity.replace(ambiguity, letter))
                 possible_profanities.extend(temp)
-    
+                
     return possible_profanities
 
 def example_filer(word: str):
