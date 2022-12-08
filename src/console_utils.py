@@ -1,8 +1,8 @@
 """
 Module containing console UI functions
 """
-from filters import remove_spaces, remove_repeats, charswap_filter, remove_endings, censor_word
-from source_dicts import SourceDictionaries
+from src.filters import remove_spaces, remove_repeats, charswap_filter, remove_endings, censor_word
+from src.source_dicts import SourceDictionaries
 
 
 def load_input_from_file(path: str) -> list:

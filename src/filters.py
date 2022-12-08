@@ -3,7 +3,7 @@ Module containing all micro filers for word validation
 """
 from itertools import product
 
-from source_dicts import SourceDictionaries
+from src.source_dicts import SourceDictionaries
 
 
 def charswap_filter(word: str) -> list:
@@ -61,7 +61,3 @@ def censor_word(input_text: list, index: int, is_adjacent: bool = False) -> list
     else:
         text[index] = text[index].replace(text[index], ("*" * len(text[index])))
     return text
-
-if __name__ == '__main__':
-    print(charswap_filter("korvvy"))
-    print(charswap_filter("plnd01a"))
