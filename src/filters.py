@@ -1,9 +1,13 @@
 from source_dicts import SourceDictionaries
 from itertools import product, combinations
+import morfeusz2
 
 """
 Module containing all micro filers for _word validation
 """
+
+
+morf = morfeusz2.Morfeusz()
 
 
 def charswap_filter(word: str) -> list:
@@ -29,7 +33,6 @@ def charswap_filter(word: str) -> list:
                 possible_profanities.extend(temp)
 
     return list(dict.fromkeys(possible_profanities))
-
 
 
 def letter_combinations_filter(word) -> list:
@@ -62,7 +65,22 @@ def remove_repeats(word: str) -> str:
 
 
 def remove_endings(word) -> str:
-    return word
+    analysis = morf.analyse(word)
+
+    word_core = ""
+    try:
+        word_core = analysis[0][2][1]
+        if word_core == "":
+            raise Exception
+    except:
+        print("enable to remove ending")
+
+    return extract_lemma(word_core)
+
+
+def extract_lemma(_word):
+    sep = ":"
+    return _word.split(sep, 1)[0] if ":" in _word else _word
 
 
 def censor_word(input_text: list, index: int, is_adjacent: bool = False) -> list:
