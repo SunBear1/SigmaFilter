@@ -24,7 +24,6 @@ def filter_badwords(input_text: list) -> list:
                 no_special_chars = remove_special_characters(word=j_word)
                 no_endings = remove_endings(no_special_chars)
                 if no_endings in SourceDictionaries.RAW_BAD_WORDS and input_word in text:
-
                     text = censor_word(input_text=text, index=text.index(input_word), word_length=len(no_endings))
     return text
 
