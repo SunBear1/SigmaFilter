@@ -1,8 +1,8 @@
 """
 Module containing console UI functions
 """
-from src.filters import remove_spaces, remove_repeats, charswap_filter, remove_endings, censor_word
-from src.source_dicts import SourceDictionaries
+from filters import remove_spaces, remove_repeats, charswap_filter, remove_endings, censor_word
+from source_dicts import SourceDictionaries
 
 
 def load_input_from_file(path: str) -> list:
@@ -20,7 +20,7 @@ def filter_badwords(input_text: list) -> list:
         no_repeats = remove_repeats(word=input_word)
         for word in charswap_filter(word=no_repeats):
             no_endings = remove_endings(word)
-            if no_endings in SourceDictionaries.RAW_BAD_WORDS:
+            if no_endings in SourceDictionaries.RAW_BAD_WORDS and input_word in text:
                 text = censor_word(input_text=text, index=text.index(input_word))
     return text
 
