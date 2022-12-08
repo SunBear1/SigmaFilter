@@ -7,34 +7,28 @@ from source_dicts import SourceDictionaries
 
 
 def charswap_filter(word: str) -> list:
+
     # STEP 1 - initial replacements with reference to Leet system. Capitalized letters do not matter in this filter
-    lowercase = word.lower()
-
     for combination, letter in SourceDictionaries.POSSIBLE_SWAPS.items():
-        if combination in lowercase:
-            lowercase = lowercase.replace(combination, letter)
-
-    possible_profanities = list()
-    possible_profanities.append(lowercase)
+        if combination in word:
+            word = word.replace(combination, letter)
+    
+    possible_profanities = [word]
+    
     # STEP 2 - ambiguity check. f.e '4' can mean both 'a' or 'h' according to Leet so 2 variations are created instead of 1.
     for ambiguity, letters in SourceDictionaries.AMBIGUITIES.items():
-        if ambiguity in lowercase:
+        if ambiguity in word:
             for letter in letters:
                 temp = list()
                 for profanity in possible_profanities:
-                    if ambiguity in profanity:
                         if profanity.count(ambiguity) > 1:
+                            # Combinations of ambiguous letter replacements. F.e "iloi" -> ["lloi","llol","ilol"]
                             options = [(c,) if c != ambiguity else (ambiguity, letter) for c in profanity]
-                            temp = [''.join(o) for o in product(*options)]
-                            temp = temp[1:]
-                        else:
+                            temp.extend([''.join(o) for o in product(*options)])
+                        elif profanity.count(ambiguity) == 1:
                             temp.append(profanity.replace(ambiguity, letter))
                 possible_profanities.extend(temp)
-
-    # STEP 3 - verifying if there is a profanity in possible_profanities list
-    # for profanity in possible_profanities:
-    #     if profanity in SourceDictionaries.RAW_BAD_WORDS:
-    #         return False
+                
     return possible_profanities
 
 
@@ -42,8 +36,17 @@ def remove_spaces(first_word: str, second_word: str) -> str:
     return first_word + second_word
 
 
-def remove_repeats(word) -> str:
-    return word
+def remove_repeats(word: str) -> str:
+    chars = list(word)
+    i = 0
+    max_index = len(chars) - 2
+    while i <= max_index:
+        if chars[i] == chars[i+1]:
+            chars.pop(i)
+            max_index -= 1
+        else:
+            i += 1
+    return ''.join(chars)
 
 
 def remove_endings(word) -> str:
