@@ -21,9 +21,14 @@ if __name__ == '__main__':
         text_to_filter[i] = text_to_filter[i].lower()
 
     # Filter words without space filtering
-    filter_badwords_results = filter_badwords(text=text_to_filter)
+    filter_badwords_results = filter_badwords(input_text=text_to_filter)
     print(filter_badwords_results)
 
     # Filter words with space filtering
-    filter_badwords_adjacent_words_results = filter_badwords_adjacent_words(text=text_to_filter)
+    filter_badwords_adjacent_words_results = filter_badwords_adjacent_words(input_text=filter_badwords_results)
     print(filter_badwords_adjacent_words_results)
+
+    result = ""
+    for word in filter_badwords_adjacent_words_results:
+        result += word + " "
+    print(result)
