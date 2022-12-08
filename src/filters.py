@@ -50,3 +50,14 @@ def remove_repeats(word: str) -> str:
 
 def remove_endings(word) -> str:
     return word
+
+
+def censor_word(input_text: list, index: int, is_adjacent: bool = False) -> list:
+    text = input_text.copy()
+    if is_adjacent:
+        text[index] = str(text[index] + text[index + 1])
+        text[index] = text[index].replace(text[index], ("*" * len(text[index])))
+        text.pop(index + 1)
+    else:
+        text[index] = text[index].replace(text[index], ("*" * len(text[index])))
+    return text

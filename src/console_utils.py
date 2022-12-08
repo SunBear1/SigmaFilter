@@ -1,7 +1,7 @@
 """
 Module containing console UI functions
 """
-from src.filters import remove_spaces, remove_repeats, charswap_filter, remove_endings
+from src.filters import remove_spaces, remove_repeats, charswap_filter, remove_endings, censor_word
 from src.source_dicts import SourceDictionaries
 
 
@@ -21,8 +21,7 @@ def filter_badwords(input_text: list) -> list:
         for word in charswap_filter(word=no_repeats):
             no_endings = remove_endings(word)
             if no_endings in SourceDictionaries.RAW_BAD_WORDS:
-                idx = text.index(input_word)
-                text[idx] = input_word.replace(input_word, ("*" * len(input_word)))
+                text = censor_word(input_text=text, index=text.index(input_word))
     return text
 
 
@@ -37,8 +36,6 @@ def filter_badwords_adjacent_words(input_text: list) -> list:
         for word in charswap_filter(word=no_repeats):
             no_endings = remove_endings(word)
             if no_endings in SourceDictionaries.RAW_BAD_WORDS:
-                text[i] = str(text[i] + text[i + 1])
-                text[i] = text[i].replace(text[i], ("*" * len(text[i])))
-                text.pop(i + 1)
+                text = censor_word(input_text=text, is_adjacent=True, index=i)
         i += 1
     return text
