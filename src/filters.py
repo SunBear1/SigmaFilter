@@ -1,5 +1,5 @@
 from source_dicts import SourceDictionaries
-from itertools import product, combinations
+from itertools import product
 
 """
 Module containing all micro filers for word validation
@@ -29,7 +29,6 @@ def charswap_filter(word: str) -> list:
                 possible_profanities.extend(temp)
 
     return list(dict.fromkeys(possible_profanities))
-
 
 
 def letter_combinations_filter(word) -> list:
