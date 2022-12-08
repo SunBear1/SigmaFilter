@@ -3,7 +3,7 @@ from itertools import product, combinations
 import morfeusz2
 
 """
-Module containing all micro filers for _word validation
+Module containing all micro filers for word validation
 """
 
 
