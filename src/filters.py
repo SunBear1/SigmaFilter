@@ -1,5 +1,6 @@
-from source_dicts import SourceDictionaries
 from itertools import product
+
+from source_dicts import SourceDictionaries
 
 """
 Module containing all micro filers for word validation
@@ -33,7 +34,7 @@ def charswap_filter(word: str) -> list:
 
 def letter_combinations_filter(word: str) -> list:
     indices = [(i, i - 1) for i in range(1, len(word))]
-    
+
     output = [word]
     for index_a, index_b in indices:
         new_word = list(word)
@@ -80,5 +81,3 @@ def remove_special_characters(word: str):
         if letter in SourceDictionaries.SPECIAL_CHARACTERS:
             word = word.replace(letter, '')
     return word
-
-
