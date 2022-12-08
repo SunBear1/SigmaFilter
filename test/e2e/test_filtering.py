@@ -75,6 +75,8 @@ from src.console_utils import filter_badwords, filter_badwords_adjacent_words
     ("pllndl0", 6),
     ("pind?ol", 6),
     ("piiiiiiiiind0i", 6),
+    ("€¥€k0m@n", 8),
+    ("curva", 5),
 ])
 def test_single_words(test_word, expected):
     example_input = test_word.lower()
