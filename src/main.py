@@ -1,11 +1,11 @@
 """
 Main project module
 """
+from console_utils import load_input_from_file, filter_badwords, filter_badwords_adjacent_words
 import yaml
-
 from src.console_utils import run_filters
 
-TEST_WORDS_FILEPATH = "../data/test_badwords.yaml"
+INPUT_FILE_PATH = "../wejscie.txt"
 
 if __name__ == '__main__':
 
