@@ -7,6 +7,12 @@ INPUT_FILE_PATH = "../wejscie.txt"
 
 if __name__ == '__main__':
 
+    print("------------------------")
+    print("------Sigma filter------")
+    print("------------------------")
+    print("© 2022 Autorzy:")
+    print("Jeremi Ledwoń, Grzegorz Pozorski, Fryderyk Róg, Łukasz Niedźwiadek\n")
+    print("Wprowadź tekst który chcesz ocenzurować")
     bad_input = True
     while bad_input:
         option = input("1) Wczytaj tekst z pliku\n2) Wczytaj tekst z konsoli\n")
@@ -20,10 +26,17 @@ if __name__ == '__main__':
     for i in range(len(text_to_filter)):
         text_to_filter[i] = text_to_filter[i].lower()
 
+    print("DEBUG", "Tekst przed filtrami", text_to_filter)
     # Filter words without space filtering
-    filter_badwords_results = filter_badwords(text=text_to_filter)
-    print(filter_badwords_results)
+    filter_badwords_results = filter_badwords(input_text=text_to_filter)
+    print("DEBUG", "filtr bez łączenia słów", filter_badwords_results)
 
     # Filter words with space filtering
-    filter_badwords_adjacent_words_results = filter_badwords_adjacent_words(text=text_to_filter)
-    print(filter_badwords_adjacent_words_results)
+    filter_badwords_adjacent_words_results = filter_badwords_adjacent_words(input_text=filter_badwords_results)
+    print("DEBUG", "filtr z łączeniem słów", filter_badwords_adjacent_words_results)
+
+    print("Ocenzurowany text:")
+    result = ""
+    for word in filter_badwords_adjacent_words_results:
+        result += word + " "
+    print(result)
