@@ -1,7 +1,7 @@
 # singular quotes may be redundand in some cases but are required in others so most "weird" signs are quoted
 swaps: 
   a: [∆,  '/-\', '/_\', '@', '/\', Д]
-  b: ['8', '|3', "|}", '|:', '|8','|8', lo, '|o', j3, ß, в, ь]
+  b: ['8', '|3', "|}", '|:', '|8','|8', lo, '|o', ß, в, ь]
   c: [<, "{", "[", (, ©, ¢]
   d: ["|)", "|}", "|]", "|>"]
   e: ['3', £, ₤, €]
