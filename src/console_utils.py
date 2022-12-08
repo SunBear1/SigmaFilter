@@ -1,33 +1,42 @@
 """
 Module containing console UI functions
 """
-import types
+from src.filters import remove_spaces, remove_repeats, charswap_filter, remove_endings
+from src.source_dicts import SourceDictionaries
 
 
-class Colors:
-    HEADER = '\033[95m'
-    OKBLUE = '\033[94m'
-    OKCYAN = '\033[96m'
-    OKGREEN = '\033[92m'
-    WARNING = '\033[93m'
-    FAIL = '\033[91m'
-    ENDC = '\033[0m'
-    BOLD = '\033[1m'
-    UNDERLINE = '\033[4m'
+def load_input_from_file(path: str) -> list:
+    words = []
+    with open(path, mode="r", encoding="utf8") as file:
+        for line in file:
+            for word in line.split():
+                words.append(word)
+    return words
 
 
-def run_filters(word: str):
-    import filters
-    for i in dir(filters):
-        filter = getattr(filters, i)
-        if callable(filter) and isinstance(filter, types.FunctionType):
-            if not filter(word):
-                print("-------------------------------")
-                print(
-                    f"Filter {filter.__qualname__} has mark word {Colors.OKCYAN}{word}{Colors.ENDC} as {Colors.FAIL}uncensored{Colors.ENDC}")
-                print("-------------------------------")
-                return
-    print("-------------------------------")
-    print(
-        f"All filters passed {Colors.OKGREEN}successfully{Colors.ENDC} for word {Colors.OKCYAN}{word}{Colors.ENDC}")
-    print("-------------------------------")
+def filter_badwords(text: list) -> list:
+    for input_word in text:
+        no_repeats = remove_repeats(word=input_word)
+        for word in charswap_filter(word=no_repeats):
+            no_endings = remove_endings(word)
+            if no_endings in SourceDictionaries.RAW_BAD_WORDS:
+                idx = text.index(input_word)
+                text[idx] = input_word.replace(input_word, ("*" * len(input_word)))
+    return text
+
+
+def filter_badwords_adjacent_words(text: list) -> list:
+    i = 0
+    while True:
+        if i + 1 >= len(text):
+            break
+        no_spaces = remove_spaces(first_word=text[i], second_word=text[i + 1])
+        no_repeats = remove_repeats(word=no_spaces)
+        for word in charswap_filter(word=no_repeats):
+            no_endings = remove_endings(word)
+            if no_endings in SourceDictionaries.RAW_BAD_WORDS:
+                text[i] = str(text[i] + text[i + 1])
+                text[i] = text[i].replace(text[i], ("*" * len(text[i])))
+                text.pop(i + 1)
+        i += 1
+        return text
