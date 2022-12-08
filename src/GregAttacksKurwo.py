@@ -1,6 +1,4 @@
 import morfeusz2
-from src.source_dicts import SourceDictionaries
-from src.text_preprocessor import TextPreprocessor
 
 
 def extract_lemma(_word):
@@ -20,34 +18,22 @@ def is_classified_as_vulgarism(word_classes):
     return False
 
 
-def find_vulgarisms(_badwords, _text):
-    _found_badwords = []
-    _words = TextPreprocessor.preprocess_text(_text)
+def remove_endings(word):
+    analysis = morf.analyse(word)
 
-    for word in _words:
-        analysis = morf.analyse(word)
+    word_core = ""
+    try:
+        word_core = analysis[0][2][1]
+        if word_core == "":
+            raise Exception
+    except:
+        print("enable to remove ending")
 
-        for _, _, element in analysis:
-            word_core = element[1]
-            word_core = extract_lemma(word_core)
-
-            if word_core in _badwords:
-                _found_badwords.append(word)
-                break
-
-            if is_classified_as_vulgarism(element[2:]):
-                _found_badwords.append(word)
-                break
-
-    return _found_badwords
+    return extract_lemma(word_core)
 
 
-if __name__ == "__main__":
-    # demo
-    morf = morfeusz2.Morfeusz()
-    badwords = SourceDictionaries.RAW_BAD_WORDS
-    text = "chuju, stówe mi wysisz kurwo (cipę -> niestety nie wykrywa kutas) (skurwysyn działa dzieki Morfeuszowi)!"
+morf = morfeusz2.Morfeusz()
+text = "chuju, stówe mi wysisz kurwo (cipę -> niestety nie wykrywa kutas) (skurwysyn działa dzieki Morfeuszowi)!"
 
-    found_badwords = find_vulgarisms(badwords, text)
-
-    print(found_badwords)
+for word in text.split():
+    print(remove_endings(word))
