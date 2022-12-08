@@ -38,7 +38,7 @@ def charswap_filter(word: str) -> list:
 def letter_combinations_filter(word) -> list:
     indices = [(i, i - 1) for i in range(1, len(word))]
 
-    output = []
+    output = [word]
     for index_a, index_b in indices:
         new_word = list(word)
         new_word[index_a], new_word[index_b] = new_word[index_b], new_word[index_a]
