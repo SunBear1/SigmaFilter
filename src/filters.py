@@ -28,7 +28,7 @@ def charswap_filter(word: str) -> list:
                         temp.append(profanity.replace(ambiguity, letter))
                 possible_profanities.extend(temp)
 
-    return possible_profanities
+    return list(dict.fromkeys(possible_profanities))
 
 
 def remove_spaces(first_word: str, second_word: str) -> str:
@@ -61,3 +61,7 @@ def censor_word(input_text: list, index: int, is_adjacent: bool = False) -> list
     else:
         text[index] = text[index].replace(text[index], ("*" * len(text[index])))
     return text
+
+if __name__ == '__main__':
+    print(charswap_filter("korvvy"))
+    print(charswap_filter("plnd01a"))
