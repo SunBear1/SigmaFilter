@@ -65,6 +65,10 @@ def remove_repeats(word: str) -> str:
 
 
 def remove_endings(analyzer, word) -> str:
+    # f.e. word 'zjeb' is converted to 'zjebać'
+    if word in SourceDictionaries.RAW_BAD_WORDS:
+        return word
+
     analysis = analyzer.analyse(word)
 
     try:
