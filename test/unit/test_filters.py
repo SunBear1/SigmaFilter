@@ -1,6 +1,7 @@
 from src.console_utils import filter_badwords, filter_badwords_adjacent_words
 from src.filters import remove_repeats, remove_endings
 import unittest
+import morfeusz2
 
 
 class TestSum(unittest.TestCase):
