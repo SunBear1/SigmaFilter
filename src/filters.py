@@ -1,6 +1,9 @@
+from itertools import product
+
 from source_dicts import SourceDictionaries
 from itertools import product, combinations
 import morfeusz2
+
 
 """
 Module containing all micro filers for word validation
@@ -35,9 +38,10 @@ def charswap_filter(word: str) -> list:
     return list(dict.fromkeys(possible_profanities))
 
 
-def letter_combinations_filter(word) -> list:
+def letter_combinations_filter(word: str) -> list:
+
     indices = [(i, i - 1) for i in range(1, len(word))]
-    
+
     output = [word]
     for index_a, index_b in indices:
         new_word = list(word)
@@ -83,12 +87,19 @@ def extract_lemma(_word):
     return _word.split(sep, 1)[0] if ":" in _word else _word
 
 
-def censor_word(input_text: list, index: int, is_adjacent: bool = False) -> list:
+def censor_word(input_text: list, index: int, word_length: int, is_adjacent: bool = False) -> list:
     text = input_text.copy()
     if is_adjacent:
         text[index] = str(text[index] + text[index + 1])
-        text[index] = text[index].replace(text[index], ("*" * len(text[index])))
+        text[index] = text[index].replace(text[index], ("*" * word_length))
         text.pop(index + 1)
     else:
-        text[index] = text[index].replace(text[index], ("*" * len(text[index])))
+        text[index] = text[index].replace(text[index], ("*" * word_length))
     return text
+
+
+def remove_special_characters(word: str):
+    for letter in word:
+        if letter in SourceDictionaries.SPECIAL_CHARACTERS:
+            word = word.replace(letter, '')
+    return word
