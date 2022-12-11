@@ -1,14 +1,14 @@
 # SigmaFilter
 
-###Opis
+### Opis
 Projekt umożliwia zamianę wybranych niecenzuralnych słów języka polskiego na gwiazdki.
 
-###Instalacja
+### Instalacja
 W celu przygotowania środowiska do uruchomienia należy: 
 - zainstalować interpreter [pythona](https://www.python.org/downloads/) w wersji co najmniej 3.9
 - Będąc w folderze z projektem użyć komendy `pip install requirements.txt`
 
-###Użycie
+### Użycie
 w celu uruchomienia programu należy wywołać komendę:
 
 ```
@@ -25,7 +25,7 @@ Program wypisuje na wyjściu konsoli tekst z przekleństwami zamienionymi na gwi
 
 Lista obsługiwanych przez nas wulgaryzmów dostępna jest w pliku `data/badwords.yaml`
 
-###Testy
+### Testy
 W celu przedstawienia możliwości filtra przygotowaliśmy testy. Aby je uruchomić należy wywołać komendę:
 
 ```
@@ -33,7 +33,7 @@ cd .\test
 pytest e2e -v
 ```
 
-###Działanie 
+### Działanie 
 Działanie filtra możemy podzielić na 2 etapy:
 - przygotowanie słowa
 - wykrycie wulgaryzmu i zamiana go na gwiazdki
