@@ -48,3 +48,5 @@ w pierwszym etapie przeprowadzamy modyfikacje słów używając modularnych funk
   - kurwy -> kurwa
 
 Następnie tak oczyszczone słowa są sprawdzane pod kątem występowania w naszej liście wulgaryzmów i w razie wykrycia ocenzurowane
+
+Sprowadzając słowo do formy podstawowej, wykorzystujemy bibliotekę python Morfeusz2. Biblioteka potrafi również zklasyfikować słowo np. jako wulgaryzm.
