@@ -74,7 +74,7 @@ def process_potentially_altered_word(word: str) -> str:
     return word
 
 
-def remove_endings(analyzer, word) -> str:
+def remove_endings(analyzer: <whatever is morfeusz type>, word: str) -> str:
     # in case file 'badwords.yaml' contains changed word
     if word in SourceDictionaries.RAW_BAD_WORDS:
         return word
