@@ -1,7 +1,8 @@
 """
 Main project module
 """
-from console_utils import load_input_from_file, filter_badwords, filter_badwords_adjacent_words
+from console_utils import load_input_from_file
+from filtering_algorithms import filter_badwords, filter_badwords_adjacent_words
 
 INPUT_FILE_PATH = "../wejscie.txt"
 

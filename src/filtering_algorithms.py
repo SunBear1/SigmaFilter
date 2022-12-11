@@ -1,6 +1,6 @@
 from filters import remove_spaces, remove_repeats, charswap_filter, remove_endings, censor_word, \
     letter_combinations_filter, remove_special_characters
-from src.source_dicts import SourceDictionaries
+from source_dicts import SourceDictionaries
 import morfeusz2
 
 morf = morfeusz2.Morfeusz()
