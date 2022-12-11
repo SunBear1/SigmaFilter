@@ -1,5 +1,5 @@
 # taken from https://github.com/Tutanchamon/pl_stemmer/blob/master/pl_stemmer.py
-def remove_general_ends(word):
+def remove_general_ends(word: str) -> str:
     if len(word) > 4 and word[-2:] in {"ia", "ie"}:
         return word[:-2]
     if len(word) > 4 and word[-1:] in {"u", u"ą", "i", "a", u"ę", "y", u"ę", u"ł"}:
