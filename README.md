@@ -26,7 +26,7 @@ Program wypisuje na wyjściu konsoli tekst z przekleństwami zamienionymi na gwi
 Lista obsługiwanych przez nas wulgaryzmów dostępna jest w pliku `data/badwords.yaml`
 
 ###Testy
-W celu przedstawienia możliwości filtra przygotowaliśmy testy jednostkowe. Aby je uruchomić należy wywołać komendę:
+W celu przedstawienia możliwości filtra przygotowaliśmy testy. Aby je uruchomić należy wywołać komendę:
 
 ```
 cd .\test 
