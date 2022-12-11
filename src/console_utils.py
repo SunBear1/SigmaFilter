@@ -43,7 +43,7 @@ def filter_badwords_adjacent_words(input_text: list) -> list:
         for i_word in letter_combinations_filter(word=no_repeats):
             for j_word in charswap_filter(word=i_word):
                 no_special_chars = remove_special_characters(word=j_word)
-                no_endings = remove_endings(morf, no_special_chars)
+                no_endings = remove_endings(analyzer=morf, word=no_special_chars)
                 if no_endings in SourceDictionaries.RAW_BAD_WORDS:
                     text = censor_word(input_text=text, is_adjacent=True, index=i, word_length=len(no_endings))
         i += 1
