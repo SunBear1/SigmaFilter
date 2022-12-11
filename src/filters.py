@@ -1,8 +1,7 @@
-from itertools import product
-
 from source_dicts import SourceDictionaries
-from itertools import product, combinations
-
+from itertools import product
+from remove_endings_helper import remove_diminutive, remove_nouns, remove_verbs_ends, remove_general_ends, \
+    remove_adjective_ends, remove_adverbs_ends, remove_plural_forms
 
 """
 Module containing all micro filers for word validation
@@ -64,16 +63,33 @@ def remove_repeats(word: str) -> str:
     return ''.join(chars)
 
 
-def remove_endings(analyzer, word) -> str:
-    analysis = analyzer.analyse(word)
+def process_potentially_altered_word(word):
+    word = remove_nouns(word)
+    word = remove_diminutive(word)
+    word = remove_adjective_ends(word)
+    word = remove_verbs_ends(word)
+    word = remove_adverbs_ends(word)
+    word = remove_plural_forms(word)
+    word = remove_general_ends(word)
+    return word
 
+
+def remove_endings(analyzer, word) -> str:
+    # in case file 'badwords.yaml' contains changed word
+    if word in SourceDictionaries.RAW_BAD_WORDS:
+        return word
+
+    analysis = analyzer.analyse(word)
     try:
         word_core = analysis[0][2][1]
         if word_core == "":
             raise Exception
-    except:
+        if analysis[0][2][2] == "ign":  # not recognised
+            word_core = process_potentially_altered_word(word_core)
+    except IndexError:
         return word
 
+    # in case analyzer (morfeusz) returned lemma with tag
     sep = ":"
     return word_core.split(sep, 1)[0] if ":" in word_core else word_core
 

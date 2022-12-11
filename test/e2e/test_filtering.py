@@ -19,6 +19,7 @@ from src.console_utils import filter_badwords, filter_badwords_adjacent_words
     ("jebanko", 7),
     ("pierdole", 8),
     ("zdzira", 6),
+
     ("zdz1r@", 6),
     ("zdz1r4", 6),
     ("zzdz1rr4", 6),
@@ -77,19 +78,20 @@ from src.console_utils import filter_badwords, filter_badwords_adjacent_words
     ("piiiiiiiiind0i", 6),
     ("€¥€k0m@n", 8),
     ("curva", 5),
-    ("kurwę", 5),
-    ("jebany", 6),
-    ("jebał", 6),
-    ("zjebani", 7),
-    ("pindola", 7),
-    ("chuje", 5),
-    ("milfa", 5),
-    ("cyckomani", 9),
-    # słowa których nie mamy w pliku 'badwords'
-    ("jebana", 0),  # -> jebany
-    # zwykłe słowa
-    ("przekleństwo", 0),
-    ("5Ł0VV0", 0),
+
+    ("pindolę", 6),
+    ("pindolowy", 6),
+    ("pindolek", 6),
+    ("pindolić", 6),
+    ("pindolami", 6),
+    ("pindolach", 6),
+    ("chuje", 4),
+    ("chujem", 4),
+    ("chujach", 4),
+    ("chujce", 4),
+    ("chujów", 4),
+    ("chujeczek", 4),
+    ("chujami", 4),
 ])
 def test_single_words(test_word, expected):
     example_input = test_word.lower()
