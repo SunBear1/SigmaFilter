@@ -82,8 +82,6 @@ def remove_endings(analyzer, word) -> str:
     analysis = analyzer.analyse(word)
     try:
         word_core = analysis[0][2][1]
-        if word_core == "":
-            raise Exception
         if analysis[0][2][2] == "ign":  # not recognised
             word_core = process_potentially_altered_word(word_core)
     except IndexError:
