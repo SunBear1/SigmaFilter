@@ -1,7 +1,8 @@
 """
 Main project module
 """
-from console_utils import load_input_from_file, filter_badwords, filter_badwords_adjacent_words
+from console_utils import load_input_from_file
+from filtering_algorithms import filter_badwords, filter_badwords_adjacent_words
 
 INPUT_FILE_PATH = "../wejscie.txt"
 
@@ -36,7 +37,5 @@ if __name__ == '__main__':
     print("DEBUG", "filtr z łączeniem słów", filter_badwords_adjacent_words_results)
 
     print("Ocenzurowany text:")
-    result = ""
-    for word in filter_badwords_adjacent_words_results:
-        result += word + " "
+    result = " ".join(filter_badwords_adjacent_words_results)
     print(result)

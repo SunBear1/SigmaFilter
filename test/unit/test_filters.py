@@ -1,7 +1,8 @@
 import pytest
+import morfeusz2
 
 from filters import remove_repeats, remove_endings
-import morfeusz2
+
 
 
 @pytest.fixture
