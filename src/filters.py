@@ -2,6 +2,7 @@ from source_dicts import SourceDictionaries
 from itertools import product
 from remove_endings_helper import remove_diminutive, remove_nouns, remove_verbs_ends, remove_general_ends, \
     remove_adjective_ends, remove_adverbs_ends, remove_plural_forms
+import morfeusz2
 
 """
 Module containing all micro filers for word validation
@@ -74,7 +75,7 @@ def process_potentially_altered_word(word: str) -> str:
     return word
 
 
-def remove_endings(analyzer: <whatever is morfeusz type>, word: str) -> str:
+def remove_endings(analyzer: morfeusz2.Morfeusz, word: str) -> str:
     # in case file 'badwords.yaml' contains changed word
     if word in SourceDictionaries.RAW_BAD_WORDS:
         return word
