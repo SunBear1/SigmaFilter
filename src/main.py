@@ -36,7 +36,5 @@ if __name__ == '__main__':
     print("DEBUG", "filtr z łączeniem słów", filter_badwords_adjacent_words_results)
 
     print("Ocenzurowany text:")
-    result = ""
-    for word in filter_badwords_adjacent_words_results:
-        result += word + " "
+    result = " ".join(filter_badwords_adjacent_words_results)
     print(result)
