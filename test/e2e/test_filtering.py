@@ -1,6 +1,6 @@
 import pytest
 
-from src.console_utils import filter_badwords, filter_badwords_adjacent_words
+from filtering_algorithms import filter_badwords, filter_badwords_adjacent_words
 
 
 @pytest.mark.parametrize("test_word, expected", [
