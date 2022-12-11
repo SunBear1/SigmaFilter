@@ -1,6 +1,8 @@
-from itertools import product
-
 from source_dicts import SourceDictionaries
+from itertools import product
+from remove_endings_helper import remove_diminutive, remove_nouns, remove_verbs_ends, remove_general_ends, \
+    remove_adjective_ends, remove_adverbs_ends, remove_plural_forms
+import morfeusz2
 
 """
 Module containing all micro filers for word validation
@@ -33,6 +35,7 @@ def charswap_filter(word: str) -> list:
 
 
 def letter_combinations_filter(word: str) -> list:
+
     indices = [(i, i - 1) for i in range(1, len(word))]
 
     output = [word]
@@ -61,8 +64,33 @@ def remove_repeats(word: str) -> str:
     return ''.join(chars)
 
 
-def remove_endings(word) -> str:
+def process_potentially_altered_word(word: str) -> str:
+    word = remove_nouns(word)
+    word = remove_diminutive(word)
+    word = remove_adjective_ends(word)
+    word = remove_verbs_ends(word)
+    word = remove_adverbs_ends(word)
+    word = remove_plural_forms(word)
+    word = remove_general_ends(word)
     return word
+
+
+def remove_endings(analyzer: morfeusz2.Morfeusz, word: str) -> str:
+    # in case file 'badwords.yaml' contains changed word
+    if word in SourceDictionaries.RAW_BAD_WORDS:
+        return word
+
+    analysis = analyzer.analyse(word)
+    try:
+        word_core = analysis[0][2][1]
+        if analysis[0][2][2] == "ign":  # not recognised
+            word_core = process_potentially_altered_word(word_core)
+    except IndexError:
+        return word
+
+    # in case analyzer (morfeusz) returned lemma with tag
+    sep = ":"
+    return word_core.split(sep, 1)[0] if ":" in word_core else word_core
 
 
 def censor_word(input_text: list, index: int, word_length: int, is_adjacent: bool = False) -> list:
@@ -76,7 +104,7 @@ def censor_word(input_text: list, index: int, word_length: int, is_adjacent: boo
     return text
 
 
-def remove_special_characters(word: str):
+def remove_special_characters(word: str) -> str:
     for letter in word:
         if letter in SourceDictionaries.SPECIAL_CHARACTERS:
             word = word.replace(letter, '')

@@ -1,6 +1,6 @@
 import pytest
 
-from src.console_utils import filter_badwords, filter_badwords_adjacent_words
+from filtering_algorithms import filter_badwords, filter_badwords_adjacent_words
 
 
 @pytest.mark.parametrize("test_word, expected", [
@@ -70,13 +70,26 @@ from src.console_utils import filter_badwords, filter_badwords_adjacent_words
     ("ch.oj", 4),
     ("cchojj", 4),
     ("<hjo", 4),
-    ("chhoooy" ,4),
+    ("chhoooy", 4),
     ("pindoi", 6),
     ("pllndl0", 6),
     ("pind?ol", 6),
     ("piiiiiiiiind0i", 6),
     ("€¥€k0m@n", 8),
     ("curva", 5),
+    ("pindolę", 6),
+    ("pindolowy", 6),
+    ("pindolek", 6),
+    ("pindolić", 6),
+    ("pindolami", 6),
+    ("pindolach", 6),
+    ("chuje", 4),
+    ("chujem", 4),
+    ("chujach", 4),
+    ("chujce", 4),
+    ("chujów", 4),
+    ("chujeczek", 4),
+    ("chujami", 4),
 ])
 def test_single_words(test_word, expected):
     example_input = test_word.lower()
