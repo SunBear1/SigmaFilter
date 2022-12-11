@@ -78,7 +78,6 @@ from src.console_utils import filter_badwords, filter_badwords_adjacent_words
     ("piiiiiiiiind0i", 6),
     ("€¥€k0m@n", 8),
     ("curva", 5),
-
     ("pindolę", 6),
     ("pindolowy", 6),
     ("pindolek", 6),
