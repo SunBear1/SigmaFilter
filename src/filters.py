@@ -103,7 +103,7 @@ def censor_word(input_text: list, index: int, word_length: int, is_adjacent: boo
     return text
 
 
-def remove_special_characters(word: str):
+def remove_special_characters(word) -> str:
     for letter in word:
         if letter in SourceDictionaries.SPECIAL_CHARACTERS:
             word = word.replace(letter, '')

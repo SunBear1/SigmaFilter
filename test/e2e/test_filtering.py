@@ -19,7 +19,6 @@ from src.console_utils import filter_badwords, filter_badwords_adjacent_words
     ("jebanko", 7),
     ("pierdole", 8),
     ("zdzira", 6),
-
     ("zdz1r@", 6),
     ("zdz1r4", 6),
     ("zzdz1rr4", 6),

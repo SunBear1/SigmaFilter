@@ -7,7 +7,7 @@ def remove_general_ends(word: str) -> str:
     return word
 
 
-def remove_diminutive(word):
+def remove_diminutive(word) -> str:
     if len(word) > 6:
         if word[-5:] in {"eczek", "iczek", "iszek", "aszek", "uszek"}:
             return word[:-5]
@@ -19,7 +19,7 @@ def remove_diminutive(word):
     return word
 
 
-def remove_verbs_ends(word):
+def remove_verbs_ends(word) -> str:
     if len(word) > 5 and word.endswith("bym"):
         return word[:-3]
     if len(word) > 5 and word[-3:] in {"esz", "asz", "cie", u"eść", u"aść", u"łem", "amy", "emy"}:
@@ -33,7 +33,7 @@ def remove_verbs_ends(word):
     return word
 
 
-def remove_nouns(word):
+def remove_nouns(word) -> str:
     if len(word) > 7 and word[-5:] in {"zacja", u"zacją", "zacji"}:
         return word[:-4]
     if len(word) > 6 and word[-4:] in {"acja", "acji", u"acją", "tach", "anie", "enie",
@@ -50,7 +50,7 @@ def remove_nouns(word):
     return word
 
 
-def remove_adjective_ends(word):
+def remove_adjective_ends(word) -> str:
     if len(word) > 7 and word.startswith("naj") and (word.endswith("sze")
                                                      or word.endswith("szy")):
         return word[3:-3]
@@ -65,7 +65,7 @@ def remove_adjective_ends(word):
     return word
 
 
-def remove_adverbs_ends(word):
+def remove_adverbs_ends(word) -> str:
     if len(word) > 4 and word[:-3] in {"nie", "wie"}:
         return word[:-2]
     if len(word) > 4 and word.endswith("rze"):
@@ -73,7 +73,7 @@ def remove_adverbs_ends(word):
     return word
 
 
-def remove_plural_forms(word):
+def remove_plural_forms(word) -> str:
     if len(word) > 4 and (word.endswith(u"ów") or word.endswith("om")):
         return word[:-2]
     if len(word) > 4 and word.endswith("ami"):
