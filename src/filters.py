@@ -63,7 +63,7 @@ def remove_repeats(word: str) -> str:
     return ''.join(chars)
 
 
-def process_potentially_altered_word(word):
+def process_potentially_altered_word(word: str) -> str:
     word = remove_nouns(word)
     word = remove_diminutive(word)
     word = remove_adjective_ends(word)
